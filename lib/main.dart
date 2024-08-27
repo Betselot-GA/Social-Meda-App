@@ -4,8 +4,8 @@ import 'package:social_media/Pages/home_page.dart';
 import 'package:social_media/Pages/profile_page.dart';
 import 'package:social_media/Pages/register_page.dart';
 import 'package:social_media/Pages/users_page.dart';
-import 'package:social_media/auth/auth.dart';
-import 'package:social_media/auth/login_or_register.dart';
+import 'package:social_media/services/auth/auth.dart';
+import 'package:social_media/services/auth/login_or_register.dart';
 import 'package:social_media/firebase_options.dart';
 import 'package:social_media/theme/dark_mode.dart';
 import 'package:social_media/theme/light_mode.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       routes: {
         '/login_register_page': (context) => LoginOrRegister(),
-        '/home_page': (context) => const HomePage(),
+        '/home_page': (context) => HomePage(),
         '/profile_page': (context) => ProfilePage(),
         '/users_page': (context) => const UsersPage(),
       },
