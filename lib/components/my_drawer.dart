@@ -36,13 +36,13 @@ class MyDrawer extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
                   leading: Icon(
-                    Icons.home,
+                    Icons.post_add,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
-                  title: Text("H O M E"),
+                  title: Text("F E E D S"),
                   onTap: () {
                     // this is already the home screen so just pop drawer
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/home_page');
                   },
                 ),
               ),
@@ -68,10 +68,10 @@ class MyDrawer extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
                   leading: Icon(
-                    Icons.group,
+                    Icons.chat,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
-                  title: Text("U S E R S"),
+                  title: const Text("C H A T S"),
                   onTap: () {
                     // navigate to users page
                     Navigator.pushNamed(context, '/users_page');

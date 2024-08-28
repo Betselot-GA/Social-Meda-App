@@ -17,4 +17,6 @@ class ChatService {
       }).toList();
     });
   }
+
+  // send message
 }
