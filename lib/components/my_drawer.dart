@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media/services/auth/auth_service.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({super.key});
 
   // logout user
   void logout() {
-    FirebaseAuth.instance.signOut();
+    final _auth = AuthService();
+    _auth.signOut();
   }
 
   @override
@@ -73,6 +75,22 @@ class MyDrawer extends StatelessWidget {
                   onTap: () {
                     // navigate to users page
                     Navigator.pushNamed(context, '/users_page');
+                  },
+                ),
+              ),
+
+              // settings tile
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.settings,
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
+                  title: Text("S E T T I N G S"),
+                  onTap: () {
+                    // navigate to users page
+                    Navigator.pushNamed(context, '/settings_page');
                   },
                 ),
               ),

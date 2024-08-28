@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media/components/my_button.dart';
 import 'package:social_media/components/my_textfield.dart';
 import 'package:social_media/helper/helper_functions.dart';
+import 'package:social_media/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   //login method
-  void login() async {
+  void login(BuildContext context) async {
     showDialog(
         context: context,
         builder: (context) => const Center(
@@ -27,22 +28,25 @@ class _LoginPageState extends State<LoginPage> {
             ));
 
     // try sign in
+    final authService = AuthService();
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      await authService.signInWithEmailPassword(
+          emailController.text, passwordController.text);
 
       // pop the loading circle
       if (context.mounted) Navigator.pop(context);
-      
     }
-     // display any errors
-     on FirebaseAuthException catch (e) {
+    // display any errors
+    catch (e) {
       // pop the loading circle
       Navigator.pop(context);
-      displayMessageToUser(e.code, context);
+      showDialog(
+        context: context,
+        builder: (context)=>AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
     }
-
-   
   }
 
   @override
@@ -95,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
               MyButton(
                 text: 'Log In',
-                onTap: login,
+                onTap: ()=>login(context),
               ),
               const SizedBox(height: 10),
               Row(

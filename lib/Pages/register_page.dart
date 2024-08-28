@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media/components/my_button.dart';
 import 'package:social_media/components/my_textfield.dart';
 import 'package:social_media/helper/helper_functions.dart';
+import 'package:social_media/services/auth/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -24,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmPwController = TextEditingController();
 
   // register method
-  void registerUser() async {
+  void registerUser(BuildContext context) async {
     // show loading circle
     showDialog(
       context: context,
@@ -33,6 +34,8 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
+    // get auth service
+    final _auth = AuthService();
     //make sure passwords match
     if (passwordController.text != confirmPwController.text) {
       // pop loading circle
@@ -46,25 +49,30 @@ class _RegisterPageState extends State<RegisterPage> {
       //try creating the user
       try {
         // create user
-        UserCredential? userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
+        _auth.signUpWithEmailPassword(
+          emailController.text,
+          passwordController.text,
         );
 
         // create a user document and add to firestore
-        createUserDocument(userCredential);
+        // createUserDocument(userCredential);
 
         // pop loading circle
         if (context.mounted) Navigator.pop(context);
-      } on FirebaseAuthException catch (e) {
+      } catch (e) {
         // pop loading circle
         Navigator.pop(context);
 
         // show error message to user
-        displayMessageToUser(e.code, context);
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
       }
     }
+    
   }
 
   // create a user document and collect them in firestore
@@ -147,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 10),
               MyButton(
                 text: 'Register',
-                onTap: registerUser,
+                onTap: ()=>registerUser(context),
               ),
               const SizedBox(height: 10),
               Row(

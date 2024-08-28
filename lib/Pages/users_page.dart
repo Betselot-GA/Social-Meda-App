@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:social_media/components/my_back_button.dart';
 import 'package:social_media/components/my_list_tile.dart';
 import 'package:social_media/helper/helper_functions.dart';
+import 'package:social_media/services/auth/auth_service.dart';
+import 'package:social_media/services/chat/chat_service.dart';
 
 class UsersPage extends StatelessWidget {
-  const UsersPage({super.key});
+  UsersPage({super.key});
+
+  // chat & auth service
+  final ChatService _chatService = ChatService();
+  final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -69,5 +75,10 @@ class UsersPage extends StatelessWidget {
             );
           }),
     );
+  }
+
+  // build a list of users except for the current logged in user
+  Widget _buildUserList(){
+    return StreamBuilder(stream: stream, builder: builder)
   }
 }

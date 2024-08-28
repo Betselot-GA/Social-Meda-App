@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:social_media/Pages/home_page.dart';
 import 'package:social_media/Pages/profile_page.dart';
 import 'package:social_media/Pages/register_page.dart';
+import 'package:social_media/Pages/settings_page.dart';
 import 'package:social_media/Pages/users_page.dart';
 import 'package:social_media/services/auth/auth.dart';
+import 'package:social_media/services/auth/auth_gate.dart';
 import 'package:social_media/services/auth/login_or_register.dart';
 import 'package:social_media/firebase_options.dart';
 import 'package:social_media/theme/dark_mode.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: const AuthGate(),
       theme: lightMode,
       darkTheme: darkMode,
       themeMode: ThemeMode.system,
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/home_page': (context) => HomePage(),
         '/profile_page': (context) => ProfilePage(),
         '/users_page': (context) => const UsersPage(),
+        '/settings_page': (context) => const SettingsPage(),
       },
     );
   }
