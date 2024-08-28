@@ -1,16 +1,18 @@
-# social_media
+# Minimal Social Media App
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+This project is a minimal social media app developed using Flutter and Firebase. The app provides basic functionality for user authentication and message posting, designed to offer a streamlined chat experience.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **User Authentication:** Secure login and signup process.
+- **Message Posting:** Users can post and view messages in a chat interface.
+- **Light & Dark Mode:** The app includes both light and dark themes for better user experience.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technologies Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Flutter:** For building the mobile user interface.
+- **Firebase:** For backend services, including authentication and real-time database management.
+
+
