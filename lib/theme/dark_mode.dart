@@ -6,7 +6,7 @@ ThemeData darkMode = ThemeData(
     brightness: Brightness.dark,
     surface: Colors.grey.shade800,
     primary: Colors.grey.shade900,
-    secondary: Colors.grey.shade700,
+    secondary: const Color.fromARGB(255, 54, 52, 52),
     inversePrimary: Colors.grey.shade500,
   ),
   textTheme: ThemeData.dark().textTheme.apply(
