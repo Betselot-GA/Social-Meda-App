@@ -107,8 +107,8 @@ class MyDrawer extends StatelessWidget {
               ),
               title: const Text("L O G O U T"),
               onTap: () {
-                // pop drawe
-                Navigator.pop(context);
+                // pop drawer
+                // Navigator.pop(context);
 
                 //log out
                 logout();
